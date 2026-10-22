@@ -1,335 +1,374 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap');
 
 :root {
-  --primary: #1F6FD1;
-  --accent: #F5C518;
-  --dark: #1E2329;
-  --text-light: #FFFFFF;
-  --text-muted: #6B7280;
-  --bg-light: #F9FAFB;
-  --border: #E5E7EB;
-  --radius: 12px;
-  --transition: all 0.3s ease;
+    --primary: #1F6FD1;
+    --primary-hover: #155bb5;
+    --accent: #F5C518;
+    --dark: #1E2329;
+    --gray: #6B7280;
+    --bg-light: #F9FAFB;
+    --white: #FFFFFF;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-hover: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--dark);
-  background-color: var(--bg-light);
-  overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    color: var(--dark);
+    background-color: var(--bg-light);
+    line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
-  color: var(--dark);
-  line-height: 1.2;
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark);
+    line-height: 1.2;
 }
 
-/* Шапка */
+a {
+    text-decoration: none;
+    color: var(--primary);
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+/* --- Шапка --- */
 header {
-  background-color: var(--text-light);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .header-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--dark);
-  text-decoration: none;
-}
-
-/* Навигация */
-nav {
-  background-color: var(--primary);
-}
-
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0.5rem 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--primary);
 }
 
 .nav-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+    list-style: none;
+    display: flex;
+    gap: 20px;
 }
 
 .nav-list a {
-  color: var(--text-light);
-  text-decoration: none;
-  font-weight: 500;
-  padding: 0.75rem 1rem;
-  display: block;
-  border-radius: var(--radius);
-  transition: var(--transition);
+    color: var(--dark);
+    font-weight: 500;
 }
 
-.nav-list a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.nav-list a.active, .nav-list a:hover {
+    color: var(--primary);
 }
 
-/* Кнопки */
+/* --- Общие секции --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--accent);
+    border-radius: 2px;
+}
+
+/* --- Кнопки --- */
 .btn {
-  display: inline-block;
-  padding: 1rem 1.5rem;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  text-align: center;
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: var(--transition);
-  min-width: 44px;
-  min-height: 44px;
-  line-height: 1;
+    display: inline-block;
+    padding: 12px 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-height: 44px;
+    text-align: center;
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  color: var(--text-light);
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 .btn-primary:hover {
-  background-color: #1a5aa1;
-  border-color: #1a5aa1;
-}
-
-.btn-accent {
-  background-color: var(--accent);
-  color: var(--dark);
-}
-
-.btn-accent:hover {
-  background-color: #d6a800;
-  border-color: #d6a800;
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    color: var(--white);
 }
 
 .btn-outline {
-  background-color: transparent;
-  color: var(--primary);
-  border-color: var(--primary);
+    background-color: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
 }
 
 .btn-outline:hover {
-  background-color: var(--primary);
-  color: var(--text-light);
+    background-color: var(--primary);
+    color: var(--white);
 }
 
-/* Карточки */
+/* --- Первый экран (Hero) --- */
+.hero {
+    background: linear-gradient(135deg, #E0F2FE 0%, #F3E8FF 100%);
+    border-radius: var(--radius);
+    padding: 60px 40px;
+    text-align: center;
+    margin-bottom: 60px;
+    box-shadow: var(--shadow);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    color: var(--dark);
+}
+
+.hero p {
+    font-size: 18px;
+    color: var(--gray);
+    margin-bottom: 30px;
+}
+
+/* --- Сетка карточек --- */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
 .card {
-  background-color: var(--text-light);
-  border-radius: var(--radius);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  transition: var(--transition);
-  border: 1px solid var(--border);
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 25px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
 }
 
-.card-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
+.card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.card-body {
-  padding: 1.5rem;
+.card p {
+    color: var(--gray);
+    margin-bottom: 20px;
+    flex-grow: 1;
 }
 
-.card-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+.card .btn {
+    align-self: flex-start;
 }
 
-.card-text {
-  color: var(--text-muted);
-  margin-bottom: 1rem;
+/* --- Секция "Как проходит обучение" --- */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    counter-reset: step;
 }
 
-/* Формы ввода */
-input[type="text"],
-input[type="tel"],
-input[type="email"],
-input[type="date"],
-select,
-textarea {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  transition: var(--transition);
-  background-color: var(--bg-light);
+.step-item {
+    background: var(--white);
+    padding: 20px;
+    border-radius: var(--radius);
+    position: relative;
+    box-shadow: var(--shadow);
+    padding-top: 50px;
 }
 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(31, 111, 209, 0.1);
+.step-item::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    background-color: var(--accent);
+    color: var(--dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+/* --- Тренажер ПДД --- */
+.trainer {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: var(--radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    border-left: 8px solid var(--primary);
 }
 
-.form-group {
-  margin-bottom: 1.5rem;
+.trainer p {
+    margin-bottom: 20px;
+    font-size: 18px;
 }
 
-/* Калькулятор */
-.calculator {
-  background-color: var(--text-light);
-  border-radius: var(--radius);
-  padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border: 1px solid var(--border);
+/* --- Отзывы --- */
+.reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
 
-.calc-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+.review {
+    background: var(--white);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    font-style: italic;
+    position: relative;
 }
 
-@media (min-width: 768px) {
-  .calc-row {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-  .calc-row .form-group {
-    flex: 1;
-  }
+.review::before {
+    content: '“';
+    font-family: serif;
+    font-size: 60px;
+    color: rgba(31, 111, 209, 0.1);
+    position: absolute;
+    top: 10px;
+    left: 15px;
 }
 
-.calc-result {
-  background-color: var(--bg-light);
-  padding: 1.5rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--primary);
+.review-author {
+    margin-top: 15px;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--dark);
 }
 
-/* Подвал */
+/* --- Подвал --- */
 footer {
-  background-color: var(--dark);
-  color: var(--text-light);
-  padding: 3rem 1rem;
-  margin-top: 3rem;
+    background-color: var(--dark);
+    color: var(--white);
+    padding: 40px 20px;
+    margin-top: 80px;
 }
 
 .footer-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .footer-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    gap: 20px;
 }
 
 .footer-nav a {
-  color: var(--text-light);
-  text-decoration: none;
-  transition: var(--transition);
+    color: #A0AEC0;
 }
 
 .footer-nav a:hover {
-  color: var(--accent);
+    color: var(--white);
+}
+
+.social-icons a {
+    color: var(--white);
+    font-weight: bold;
+    margin-left: 15px;
+    background: rgba(255,255,255,0.1);
+    padding: 5px 10px;
+    border-radius: 4px;
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 1.5rem;
-  text-align: center;
-  font-size: 0.875rem;
-  color: var(--text-muted);
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #A0AEC0;
+    font-size: 14px;
 }
 
-/* Адаптив */
-@media (min-width: 375px) {
-  .header-inner, .nav-inner, .footer-inner {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .nav-list {
-    flex-direction: row;
-    gap: 1.5rem;
-  }
-  .nav-list a {
-    padding: 0.5rem 0;
-  }
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-  .footer-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: start;
-  }
-}
-
-@media (min-width: 1280px) {
-  .header-inner, .nav-inner, .footer-inner, .calculator {
-    max-width: 1440px;
-  }
-  .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Защита от горизонтальной прокрутки на брейкпойнтах */
-@media (max-width: 375px), (max-width: 768px), (max-width: 1280px) {
-  body {
-    overflow-x: hidden;
-  }
+/* --- Адаптивность --- */
+@media (max-width: 768px) {
+    .header-inner {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-list {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero h1 {
+        font-size: 32px;
+    }
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .footer-nav {
+        justify-content: center;
+    }
 }
