@@ -1,141 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Спасибо — Автошкола "Правый ряд"</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .thanks-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 4rem 1rem;
-      text-align: center;
-    }
-    .thanks-icon {
-      font-size: 4rem;
-      color: #10b981;
-      margin-bottom: 1rem;
-    }
-    .request-id {
-      background-color: var(--bg-light);
-      padding: 0.5rem 1rem;
-      border-radius: var(--radius);
-      display: inline-block;
-      margin: 1.5rem 0;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      color: var(--primary);
-      border: 1px solid var(--border);
-    }
-    .checklist {
-      text-align: left;
-      background-color: var(--text-light);
-      padding: 1.5rem;
-      border-radius: var(--radius);
-      border: 1px solid var(--border);
-      margin: 2rem 0;
-    }
-    .checklist h3 {
-      margin-bottom: 1rem;
-      color: var(--dark);
-    }
-    .checklist ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .checklist li {
-      padding: 0.5rem 0;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-    .checklist li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: #10b981;
-      font-weight: bold;
-    }
-    .messenger-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спасибо! — Автошкола «Правый ряд»</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5Z8GCK9BQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T5Z8GCK9BQ');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/utm.js" defer></script>
+    <script src="js/analytics.js" defer></script>
 </head>
-<body>  <!-- Шапка -->
-  <header>
-    <div class="header-inner">
-      <a href="/" class="logo">Правый ряд</a>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="/">Главная</a></li>
-          <li><a href="/about">О нас</a></li>
-          <li><a href="/prices">Цены</a></li>
-          <li><a href="/contacts">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>  <main class="thanks-container">
-    <div class="thanks-icon">&#10004;</div>
-    <h1>Спасибо! Ваша заявка принята</h1>
-    <p>Мы свяжемся с вами в ближайшее время для подтверждения записи.</p>
-Копировать
-<div class="request-id">
-  Номер вашей заявки: <span id="request-id">—</span>
-</div>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">Правый ряд</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="prices.html">Цены</a></li>
+                    <li><a href="instructors.html">Инструкторы</a></li>
+                    <li><a href="pdd-test.html">Тренажёр</a></li>
+                    <li><a href="branches.html">Филиалы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div class="checklist">
-  <h3>На консультацию с собой возьмите:</h3>
-  <ul>
-    <li>Паспорт гражданина РФ</li>
-    <li>Медицинскую справку (форма 003-В/у)</li>
-    <li>Две фотографии 3x4 (матовые)</li>
-  </ul>
-</div>
+    <main class="container" style="text-align: center; padding: 60px 0;">
+        <h1 style="color: var(--primary); font-size: 42px; margin-bottom: 20px;">Спасибо!</h1>
+        <p style="font-size: 20px; margin-bottom: 30px;">Ваша заявка успешно принята.</p>
+        
+        <div class="card" style="display: inline-block; text-align: left; background: #f8f9fa; padding: 20px 30px; margin-bottom: 30px;">
+            <p style="font-size: 18px;"><strong>Номер вашей заявки:</strong> <span id="request-id-display" style="color: var(--primary); font-weight: bold;"></span></p>
+            <p style="color: var(--gray); margin-top: 10px;">Мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
+        </div>
 
-<div class="messenger-buttons">
-  <a href="https://t.me/pravy_ryad_bot" target="_blank" class="btn btn-outline" data-event="messenger_click" data-messenger="telegram">Написать в Telegram</a>
-  <a href="https://wa.me/74951234567" target="_blank" class="btn btn-outline" data-event="messenger_click" data-messenger="whatsapp">Написать в WhatsApp</a>
-</div>
+        <div style="max-width: 600px; margin: 0 auto; text-align: left; margin-bottom: 40px;">
+            <h3>Что взять на консультацию:</h3>
+            <ul style="margin-top: 10px; margin-left: 20px;">
+                <li>Паспорт</li>
+                <li>Медицинскую справку (если есть)</li>
+                <li>Студенческий билет (для скидки 15%)</li>
+            </ul>
+        </div>
 
-  </main>  <!-- Подвал -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-nav">
-        <a href="/about">О нас</a>
-        <a href="/prices">Цены</a>
-        <a href="/contacts">Контакты</a>
-        <a href="/privacy">Политика конфиденциальности</a>
-      </div>
-      <div class="social-icons">
-        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
-        </a>
-        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
-        </a>
-        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
-    </div>
-  </footer>  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const requestId = urlParams.get('request_id');
-      const idElement = document.getElementById('request-id');
+        <div>
+            <h3>Оставайтесь на связи:</h3>
+            <div style="margin-top: 15px;">
+                <a href="https://vk.com/pravy_ryad" target="_blank" class="btn btn-outline" data-event="social_click" data-page_section="thanks">ВКонтакте</a>
+                <a href="https://t.me/pravy_ryad" target="_blank" class="btn btn-outline" data-event="social_click" data-page_section="thanks">Telegram</a>
+            </div>
+        </div>
+    </main>
 
-      if (requestId && idElement) {
-        idElement.textContent = requestId;
-      } else {
-        idElement.textContent = 'REQ-XXXX-XXXX';
-      }
-    });
-  </script>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-nav">
+                <a href="index.html">Главная</a>
+                <a href="prices.html">Цены</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Автошкола «Правый ряд». Все права защищены.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const reqId = urlParams.get('request_id');
+            if (reqId) {
+                document.getElementById('request-id-display').textContent = reqId;
+            } else {
+                document.getElementById('request-id-display').textContent = 'Не найден';
+            }
+        });
+    </script>
 </body>
 </html>
