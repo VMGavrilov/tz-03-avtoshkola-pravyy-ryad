@@ -1,232 +1,116 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Наши инструкторы — Автошкола "Правый ряд"</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .instructors-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-    .filter-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      margin-bottom: 2rem;
-    }
-    .filter-btn {
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--border);
-      background-color: var(--bg-light);
-      border-radius: var(--radius);
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 500;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-    .filter-btn.active {
-      background-color: var(--primary);
-      color: var(--text-light);
-      border-color: var(--primary);
-    }
-    .filter-btn:hover:not(.active) {
-      border-color: var(--primary);
-      background-color: #f3f4f6;
-    }
-    .instructors-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .instructor-card {
-      background-color: var(--text-light);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      border: 1px solid var(--border);
-      transition: var(--transition);
-      display: flex;
-      flex-direction: column;
-    }
-    .instructor-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    }
-    .instructor-photo {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      background-color: var(--bg-light);
-    }
-    .instructor-body {
-      padding: 1.5rem;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-    .instructor-name {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: var(--dark);
-    }
-    .instructor-details {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      flex-grow: 1;
-    }
-    .instructor-category {
-      display: inline-block;
-      padding: 0.25rem 0.75rem;
-      background-color: var(--accent);
-      color: var(--dark);
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Инструкторы — Автошкола «Правый ряд»</title>
+    <meta name="description" content="Наши инструкторы по вождению. Опыт, стаж, категории.">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5Z8GCK9BQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T5Z8GCK9BQ');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/utm.js" defer></script>
+    <script src="js/analytics.js" defer></script>
 </head>
-<body>  <!-- Шапка -->
-  <header>
-    <div class="header-inner">
-      <a href="/" class="logo">Правый ряд</a>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="/">Главная</a></li>
-          <li><a href="/about">О нас</a></li>
-          <li><a href="/prices">Цены</a></li>
-          <li><a href="/contacts">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>  <main class="instructors-container">
-    <h1>Наши инструкторы</h1>
-    <p>Выберите тип трансмиссии, чтобы найти подходящего наставника.</p>
-Копировать
-<!-- Фильтр -->
-<div class="filter-buttons">
-  <button class="filter-btn active" data-filter="all">Все</button>
-  <button class="filter-btn" data-filter="mkkp">МКПП</button>
-  <button class="filter-btn" data-filter="akpp">АКПП</button>
-  <button class="filter-btn" data-filter="moto">Мотоцикл</button>
-</div>
+<body>
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">Правый ряд</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="prices.html">Цены</a></li>
+                    <li><a href="instructors.html" class="active">Инструкторы</a></li>
+                    <li><a href="pdd-test.html">Тренажёр</a></li>
+                    <li><a href="branches.html">Филиалы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<!-- Сетка карточек -->
-<div class="instructors-grid" id="instructors-grid">
-  <!-- Карточки генерируются из массива или написаны статично -->
-  <div class="instructor-card" data-category="mkkp">
-    <img src="../images/instructor1.jpg" alt="Алексей Смирнов" class="instructor-photo">
-    <div class="instructor-body">
-      <div class="instructor-name">Алексей Смирнов</div>
-      <div class="instructor-details">
-        <p><strong>Стаж:</strong> 12 лет</p>
-        <p><strong>Специализация:</strong> МКПП, восстановление навыков</p>
-      </div>
-      <span class="instructor-category">МКПП</span>
-    </div>
-  </div>
-  <div class="instructor-card" data-category="akpp">
-    <img src="../images/instructor2.jpg" alt="Мария Волкова" class="instructor-photo">
-    <div class="instructor-body">
-      <div class="instructor-name">Мария Волкова</div>
-      <div class="instructor-details">
-        <p><strong>Стаж:</strong> 8 лет</p>
-        <p><strong>Специализация:</strong> АКПП, женщины за рулем</p>
-      </div>
-      <span class="instructor-category">АКПП</span>
-    </div>
-  </div>
-  <div class="instructor-card" data-category="moto">
-    <img src="../images/instructor3.jpg" alt="Дмитрий Орлов" class="instructor-photo">
-    <div class="instructor-body">
-      <div class="instructor-name">Дмитрий Орлов</div>
-      <div class="instructor-details">
-        <p><strong>Стаж:</strong> 15 лет</p>
-        <p><strong>Специализация:</strong> Категория А, эндуро</p>
-      </div>
-      <span class="instructor-category">Мотоцикл</span>
-    </div>
-  </div>
-  <div class="instructor-card" data-category="akpp">
-    <img src="../images/instructor4.jpg" alt="Сергей Беляев" class="instructor-photo">
-    <div class="instructor-body">
-      <div class="instructor-name">Сергей Беляев</div>
-      <div class="instructor-details">
-        <p><strong>Стаж:</strong> 10 лет</p>
-        <p><strong>Специализация:</strong> АКПП, интенсив</p>
-      </div>
-      <span class="instructor-category">АКПП</span>
-    </div>
-  </div>
-  <div class="instructor-card" data-category="mkkp">
-    <img src="../images/instructor5.jpg" alt="Елена Соколова" class="instructor-photo">
-    <div class="instructor-body">
-      <div class="instructor-name">Елена Соколова</div>
-      <div class="instructor-details">
-        <p><strong>Стаж:</strong> 9 лет</p>
-        <p><strong>Специализация:</strong> МКПП, парковка</p>
-      </div>
-      <span class="instructor-category">МКПП</span>
-    </div>
-  </div>
-</div>
+    <main class="container">
+        <h1>Наши инструкторы</h1>
 
-  </main>  <!-- Подвал -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-nav">
-        <a href="/about">О нас</a>
-        <a href="/prices">Цены</a>
-        <a href="/contacts">Контакты</a>
-        <a href="/privacy">Политика конфиденциальности</a>
-      </div>
-      <div class="social-icons">
-        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
-        </a>
-        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
-        </a>
-        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
-    </div>
-  </footer>  <script>
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const instructorCards = document.querySelectorAll('.instructor-card');
+        <div class="filters" style="margin-bottom: 30px; display: flex; gap: 10px;">
+            <button class="btn btn-primary filter-btn active" data-filter="all" data-event="instructor_view" data-gearbox="all">Все</button>
+            <button class="btn btn-outline filter-btn" data-filter="manual" data-event="instructor_view" data-gearbox="manual">МКПП</button>
+            <button class="btn btn-outline filter-btn" data-filter="auto" data-event="instructor_view" data-gearbox="auto">АКПП</button>
+        </div>
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Обновление активных кнопок
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        button.classList.add('active');
+        <div class="cards-grid" id="instructors-grid">
+            <div class="card instructor-card" data-category="manual">
+                <img src="img/instructor-1.jpg" alt="Инструктор Алексей" style="height: 200px; object-fit: cover; margin-bottom: 15px;">
+                <h3>Алексей Иванов</h3>
+                <p><strong>Стаж:</strong> 10 лет</p>
+                <p><strong>Категория:</strong> МКПП</p>
+                <a href="contacts.html" class="btn btn-outline" data-event="cta_click" data-button-name="instructor_alexey">Записаться</a>
+            </div>
+            <div class="card instructor-card" data-category="auto">
+                <img src="img/instructor-2.jpg" alt="Инструктор Мария" style="height: 200px; object-fit: cover; margin-bottom: 15px;">
+                <h3>Мария Петрова</h3>
+                <p><strong>Стаж:</strong> 7 лет</p>
+                <p><strong>Категория:</strong> АКПП</p>
+                <a href="contacts.html" class="btn btn-outline" data-event="cta_click" data-button-name="instructor_maria">Записаться</a>
+            </div>
+            <div class="card instructor-card" data-category="manual">
+                <img src="img/instructor-3.jpg" alt="Инструктор Сергей" style="height: 200px; object-fit: cover; margin-bottom: 15px;">
+                <h3>Сергей Смирнов</h3>
+                <p><strong>Стаж:</strong> 15 лет</p>
+                <p><strong>Категория:</strong> МКПП</p>
+                <a href="contacts.html" class="btn btn-outline" data-event="cta_click" data-button-name="instructor_sergey">Записаться</a>
+            </div>
+            <div class="card instructor-card" data-category="auto">
+                <img src="img/instructor-4.jpg" alt="Инструктор Ольга" style="height: 200px; object-fit: cover; margin-bottom: 15px;">
+                <h3>Ольга Соколова</h3>
+                <p><strong>Стаж:</strong> 5 лет</p>
+                <p><strong>Категория:</strong> АКПП</p>
+                <a href="contacts.html" class="btn btn-outline" data-event="cta_click" data-button-name="instructor_olga">Записаться</a>
+            </div>
+        </div>
+    </main>
 
-        const filter = button.dataset.filter;
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-nav">
+                <a href="index.html">Главная</a>
+                <a href="prices.html">Цены</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer">VK</a>
+                <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer">TG</a>
+                <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer">WA</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Автошкола «Правый ряд». Все права защищены.
+        </div>
+    </footer>
 
-        instructorCards.forEach(card => {
-          if (filter === 'all') {
-            card.style.display = 'flex';
-          } else {
-            if (card.dataset.category === filter) {
-              card.style.display = 'flex';
-            } else {
-              card.style.display = 'none';
-            }
-          }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.instructor-card');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => { b.classList.remove('active', 'btn-primary'); b.classList.add('btn-outline'); });
+                    btn.classList.remove('btn-outline');
+                    btn.classList.add('active', 'btn-primary');
+                    const filter = btn.dataset.filter;
+                    cards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) { card.style.display = 'flex'; } else { card.style.display = 'none'; }
+                    });
+                });
+            });
         });
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
