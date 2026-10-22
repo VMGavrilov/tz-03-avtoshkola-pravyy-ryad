@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — Автошкола "Правый ряд"</title>
+    <meta name="description" content="Запись на обучение в автошколу «Правый ряд». Контакты, телефоны, мессенджеры.">
+    
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5Z8GCK9BQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-T5Z8GCK9BQ');
+    </script>
+    
+    <script src="../js/utm.js" defer></script>
+    <script src="../js/analytics.js" defer></script>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">Правый ряд</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="prices.html">Цены</a></li>
+                    <li><a href="instructors.html">Инструкторы</a></li>
+                    <li><a href="pdd-test.html">Тренажёр</a></li>
+                    <li><a href="branches.html">Филиалы</a></li>
+                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Контакты и запись</h1>
+
+        <div class="contacts-grid">
+            <section class="contact-info">
+                <h2>Свяжитесь с нами</h2>
+                <p><strong>Телефон:</strong> <a href="tel:+74951234567" data-event="contact_click" data-contact_type="phone">+7 (495) 123-45-67</a></p>
+                <p><strong>E-mail:</strong> <a href="mailto:info@pravy-ryad.ru" data-event="contact_click" data-contact_type="email">info@pravy-ryad.ru</a></p>
+                <p><strong>Адрес:</strong> г. Москва, ул. Водителей, д. 10</p>
+                
+                <div class="messenger-buttons">
+                    <a href="https://t.me/pravy_ryad_bot" target="_blank" class="btn btn-outline" data-event="messenger_click" data-messenger="telegram">Написать в Telegram</a>
+                    <a href="https://wa.me/74951234567" target="_blank" class="btn btn-outline" data-event="messenger_click" data-messenger="whatsapp">Написать в WhatsApp</a>
+                </div>
+            </section>
+
+            <section class="contact-form-section">
+                <h2>Оставить заявку</h2>
+                <form id="contact-form" novalidate>
+                    <!-- Скрытые поля -->
+                    <input type="hidden" name="request_id" id="request_id">
+                    <input type="hidden" name="utm_source" id="utm_source">
+                    <input type="hidden" name="utm_medium" id="utm_medium">
+                    <input type="hidden" name="utm_campaign" id="utm_campaign">
+                    <input type="hidden" name="utm_content" id="utm_content">
+
+                    <div class="form-group">
+                        <label for="name">Имя *</label>
+                        <input type="text" id="name" name="name" required minlength="2" maxlength="60" placeholder="Иван Иванов">
+                        <small class="error-text" id="error-name"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+79991234567">
+                        <small class="error-text" id="error-phone"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" placeholder="example@mail.ru">
+                        <small class="error-text" id="error-email"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Категория *</label>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Выберите категорию</option>
+                            <option value="b_manual">B (МКПП)</option>
+                            <option value="b_auto">B (АКПП)</option>
+                            <option value="a_moto">A (мотоцикл)</option>
+                            <option value="refresh">Восстановление навыков</option>
+                        </select>
+                        <small class="error-text" id="error-category"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="branch">Филиал *</label>
+                        <select id="branch" name="branch" required>
+                            <option value="" disabled selected>Выберите филиал</option>
+                            <option value="center">Центральный</option>
+                            <option value="north">Северный</option>
+                        </select>
+                        <small class="error-text" id="error-branch"></small>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="consent" name="consent" required>
+                            Я согласен с <a href="privacy.html" target="_blank">политикой обработки персональных данных</a>
+                        </label>
+                        <small class="error-text" id="error-consent"></small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="submit-btn" data-event="cta_click" data-button-name="submit_form">Отправить заявку</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-nav">
+                <a href="index.html">Главная</a>
+                <a href="prices.html">Цены</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте"><span>VK</span></a>
+                <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram"><span>TG</span></a>
+                <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp"><span>WA</span></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Логика формы -->
+    <script>
+        // Генерация ID заявки
+        function generateRequestId() {
+            return 'REQ-' + crypto.randomUUID().toUpperCase();
+        }
+
+        // Валидация телефона
+        function validatePhone(phone) {
+            const regex = /^\+7\d{10}$/;
+            return regex.test(phone);
+        }
+
+        // Очистка ошибок
+        function clearErrors() {
+            document.querySelectorAll('.error-text').forEach(el => el.textContent = '');
+            document.querySelectorAll('.form-group').forEach(el => el.classList.remove('error'));
+        }
+
+        // Установка ошибки
+        function setError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorEl = document.getElementById('error-' + fieldId);
+            if (field) field.closest('.form-group').classList.add('error');
+            if (errorEl) errorEl.textContent = message;
+        }
+
+        // Заполнение UTM-меток из sessionStorage
+        function populateUtmFields() {
+            const fields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+            fields.forEach(key => {
+                const value = sessionStorage.getItem(key);
+                if (value) {
+                    document.getElementById(key).value = value;
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Заполняем скрытые поля при загрузке страницы
+            document.getElementById('request_id').value = generateRequestId();
+            populateUtmFields();
+
+            const form = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                clearErrors();
+
+                // Собираем данные. ВАЖНО: используем URLSearchParams для формата x-www-form-urlencoded,
+                // чтобы Google Apps Script (doPost) прочитал их через e.parameter
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                // Клиентская валидация
+                let hasError = false;
+                if (data.name.length < 2 || data.name.length > 60) {
+                    setError('name', 'Имя должно содержать от 2 до 60 символов');
+                    hasError = true;
+                }
+                if (!validatePhone(data.phone)) {
+                    setError('phone', 'Введите телефон в формате +79991234567');
+                    hasError = true;
+                }
+                if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+                    setError('email', 'Введите корректный E-mail');
+                    hasError = true;
+                }
+                if (!data.consent) {
+                    setError('consent', 'Необходимо дать согласие');
+                    hasError = true;
+                }
+
+                if (hasError) {
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_error', { field_name: 'validation', error_type: 'client' });
+                    }
+                    return;
+                }
+
+                // Блокировка кнопки
+                submitBtn.disabled = true;
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Отправка...';
+
+                try {
+                    // Отправляем как URLSearchParams (form-data)
+                    const searchParams = new URLSearchParams(formData);
+                    
+                    const response = await fetch('YOUR_APPS_SCRIPT_URL', {
+                        method: 'POST',
+                        body: searchParams
+                    });
+
+                    const result = await response.json();
+
+                    if (result.ok === true) {
+                        // Событие успешной заявки
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'generate_lead', {
+                                lead_category: data.category,
+                                lead_source: data.utm_source || 'direct'
+                            });
+                        }
+                        // Переадресация на страницу "Спасибо" с ID заявки
+                        window.location.href = `thanks.html?request_id=${encodeURIComponent(data.request_id)}`;
+                    } else {
+                        // Ошибка на стороне сервера
+                        alert(result.error || 'Произошла ошибка при отправке.');
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'form_error', { field_name: 'server', error_type: 'server' });
+                        }
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('Ошибка сети. Проверьте подключение.');
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_error', { field_name: 'network', error_type: 'server' });
+                    }
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

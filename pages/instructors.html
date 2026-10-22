@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Наши инструкторы — Автошкола "Правый ряд"</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .instructors-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .filter-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border);
+      background-color: var(--bg-light);
+      border-radius: var(--radius);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .filter-btn.active {
+      background-color: var(--primary);
+      color: var(--text-light);
+      border-color: var(--primary);
+    }
+    .filter-btn:hover:not(.active) {
+      border-color: var(--primary);
+      background-color: #f3f4f6;
+    }
+    .instructors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .instructor-card {
+      background-color: var(--text-light);
+      border-radius: var(--radius);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .instructor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+    .instructor-photo {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      background-color: var(--bg-light);
+    }
+    .instructor-body {
+      padding: 1.5rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .instructor-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+    .instructor-details {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+    .instructor-category {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background-color: var(--accent);
+      color: var(--dark);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>  <!-- Шапка -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">Правый ряд</a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="/">Главная</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/prices">Цены</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  <main class="instructors-container">
+    <h1>Наши инструкторы</h1>
+    <p>Выберите тип трансмиссии, чтобы найти подходящего наставника.</p>
+Копировать
+<!-- Фильтр -->
+<div class="filter-buttons">
+  <button class="filter-btn active" data-filter="all">Все</button>
+  <button class="filter-btn" data-filter="mkkp">МКПП</button>
+  <button class="filter-btn" data-filter="akpp">АКПП</button>
+  <button class="filter-btn" data-filter="moto">Мотоцикл</button>
+</div>
+
+<!-- Сетка карточек -->
+<div class="instructors-grid" id="instructors-grid">
+  <!-- Карточки генерируются из массива или написаны статично -->
+  <div class="instructor-card" data-category="mkkp">
+    <img src="../images/instructor1.jpg" alt="Алексей Смирнов" class="instructor-photo">
+    <div class="instructor-body">
+      <div class="instructor-name">Алексей Смирнов</div>
+      <div class="instructor-details">
+        <p><strong>Стаж:</strong> 12 лет</p>
+        <p><strong>Специализация:</strong> МКПП, восстановление навыков</p>
+      </div>
+      <span class="instructor-category">МКПП</span>
+    </div>
+  </div>
+  <div class="instructor-card" data-category="akpp">
+    <img src="../images/instructor2.jpg" alt="Мария Волкова" class="instructor-photo">
+    <div class="instructor-body">
+      <div class="instructor-name">Мария Волкова</div>
+      <div class="instructor-details">
+        <p><strong>Стаж:</strong> 8 лет</p>
+        <p><strong>Специализация:</strong> АКПП, женщины за рулем</p>
+      </div>
+      <span class="instructor-category">АКПП</span>
+    </div>
+  </div>
+  <div class="instructor-card" data-category="moto">
+    <img src="../images/instructor3.jpg" alt="Дмитрий Орлов" class="instructor-photo">
+    <div class="instructor-body">
+      <div class="instructor-name">Дмитрий Орлов</div>
+      <div class="instructor-details">
+        <p><strong>Стаж:</strong> 15 лет</p>
+        <p><strong>Специализация:</strong> Категория А, эндуро</p>
+      </div>
+      <span class="instructor-category">Мотоцикл</span>
+    </div>
+  </div>
+  <div class="instructor-card" data-category="akpp">
+    <img src="../images/instructor4.jpg" alt="Сергей Беляев" class="instructor-photo">
+    <div class="instructor-body">
+      <div class="instructor-name">Сергей Беляев</div>
+      <div class="instructor-details">
+        <p><strong>Стаж:</strong> 10 лет</p>
+        <p><strong>Специализация:</strong> АКПП, интенсив</p>
+      </div>
+      <span class="instructor-category">АКПП</span>
+    </div>
+  </div>
+  <div class="instructor-card" data-category="mkkp">
+    <img src="../images/instructor5.jpg" alt="Елена Соколова" class="instructor-photo">
+    <div class="instructor-body">
+      <div class="instructor-name">Елена Соколова</div>
+      <div class="instructor-details">
+        <p><strong>Стаж:</strong> 9 лет</p>
+        <p><strong>Специализация:</strong> МКПП, парковка</p>
+      </div>
+      <span class="instructor-category">МКПП</span>
+    </div>
+  </div>
+</div>
+
+  </main>  <!-- Подвал -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-nav">
+        <a href="/about">О нас</a>
+        <a href="/prices">Цены</a>
+        <a href="/contacts">Контакты</a>
+        <a href="/privacy">Политика конфиденциальности</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
+        </a>
+        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
+        </a>
+        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
+    </div>
+  </footer>  <script>
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const instructorCards = document.querySelectorAll('.instructor-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Обновление активных кнопок
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        const filter = button.dataset.filter;
+
+        instructorCards.forEach(card => {
+          if (filter === 'all') {
+            card.style.display = 'flex';
+          } else {
+            if (card.dataset.category === filter) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

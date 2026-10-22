@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цены — Автошкола "Правый ряд"</title>
+    <meta name="description" content="Стоимость обучения в автошколе «Правый ряд». Калькулятор, рассрочка, скидки студентам.">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5Z8GCK9BQ"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-T5Z8GCK9BQ');
+    </script>
+    
+    <!-- Скрипты сайта -->
+    <script src="../js/utm.js" defer></script>
+    <script src="../js/analytics.js" defer></script>
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">Правый ряд</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="prices.html" class="active">Цены</a></li>
+                    <li><a href="instructors.html">Инструкторы</a></li>
+                    <li><a href="pdd-test.html">Тренажёр</a></li>
+                    <li><a href="branches.html">Филиалы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Стоимость обучения</h1>
+
+        <!-- Калькулятор стоимости -->
+        <section class="calculator">
+            <h2>Калькулятор стоимости</h2>
+            <form id="calc-form">
+                <div class="calc-row">
+                    <div class="form-group">
+                        <label for="category">Категория обучения</label>
+                        <select id="category" name="category" required>
+                            <option value="49000">В механика — 49 000 ₽</option>
+                            <option value="52000">В автомат — 52 000 ₽</option>
+                            <option value="28000">А (мотоцикл) — 28 000 ₽</option>
+                            <option value="17000">Восстановление навыков — 17 000 ₽</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="extra-hours">Дополнительные часы (1 час — 1800 ₽)</label>
+                        <input type="number" id="extra-hours" name="extra-hours" min="0" max="20" value="0">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="student-discount">
+                        Я студент (скидка 15%)
+                    </label>
+                </div>
+
+                <div class="calc-result" id="total-result">
+                    Итого: 0 ₽
+                </div>
+            </form>
+        </section>
+
+        <!-- Рассрочка -->
+        <section class="installments">
+            <h2>Рассрочка</h2>
+            <p>Разделите стоимость обучения на удобные платежи без переплат.</p>
+            <div class="installment-buttons">
+                <button type="button" class="btn btn-outline" data-months="3" data-event="installment_click">3 месяца</button>
+                <button type="button" class="btn btn-outline active" data-months="6" data-event="installment_click">6 месяцев</button>
+                <button type="button" class="btn btn-outline" data-months="10" data-event="installment_click">10 месяцев</button>
+            </div>
+            <div class="installment-result" id="installment-result">
+                Ежемесячный платеж: 0 ₽
+            </div>
+        </section>
+
+        <!-- Прайс-лист -->
+        <section class="price-list">
+            <h2>Полный прайс-лист</h2>
+            <p>Скачайте подробную таблицу со всеми услугами автошколы.</p>
+            <a href="../files/price-list-2026.pdf" class="btn btn-primary" download data-event="file_download" data-file-name="price-list-2026.pdf">
+                Скачать прайс-лист (PDF)
+            </a>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-nav">
+                <a href="index.html">Главная</a>
+                <a href="prices.html">Цены</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
+                    <span>VK</span>
+                </a>
+                <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
+                    <span>TG</span>
+                </a>
+                <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
+                    <span>WA</span>
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Логика калькулятора -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const categorySelect = document.getElementById('category');
+            const extraHoursInput = document.getElementById('extra-hours');
+            const studentCheckbox = document.getElementById('student-discount');
+            const totalResult = document.getElementById('total-result');
+            const installmentButtons = document.querySelectorAll('.installment-buttons button');
+            const installmentResult = document.getElementById('installment-result');
+            
+            const HOUR_PRICE = 1800;
+            const STUDENT_DISCOUNT = 0.15;
+
+            function calculateTotal() {
+                const basePrice = parseInt(categorySelect.value, 10);
+                const extraHours = parseInt(extraHoursInput.value, 10) || 0;
+                const extraCost = extraHours * HOUR_PRICE;
+                
+                let total = basePrice + extraCost;
+                if (studentCheckbox.checked) {
+                    total = total * (1 - STUDENT_DISCOUNT);
+                }
+                
+                totalResult.textContent = `Итого: ${total.toLocaleString('ru-RU')} ₽`;
+                updateInstallment(total);
+
+                // Отправка события в GA4 при расчете
+                if (typeof gtag === 'function') {
+                    gtag('event', 'price_calc', {
+                        category: categorySelect.options[categorySelect.selectedIndex].text.split(' ')[0],
+                        gearbox: categorySelect.value == '52000' ? 'auto' : 'manual',
+                        total_price: total
+                    });
+                }
+            }
+
+            function updateInstallment(total) {
+                const activeButton = document.querySelector('.installment-buttons button.active');
+                const months = parseInt(activeButton.dataset.months, 10);
+                const monthly = Math.ceil(total / months);
+                installmentResult.textContent = `Ежемесячный платеж: ${monthly.toLocaleString('ru-RU')} ₽`;
+            }
+
+            function handleInstallmentClick(e) {
+                const btn = e.target.closest('.btn');
+                if (!btn) return;
+                
+                installmentButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const currentTotalText = totalResult.textContent.replace(/[^\d]/g, '');
+                const currentTotal = parseInt(currentTotalText, 10);
+                if (currentTotal) {
+                    updateInstallment(currentTotal);
+                }
+            }
+
+            // Слушатели событий
+            categorySelect.addEventListener('change', calculateTotal);
+            extraHoursInput.addEventListener('input', calculateTotal);
+            studentCheckbox.addEventListener('change', calculateTotal);
+            document.querySelector('.installment-buttons').addEventListener('click', handleInstallmentClick);
+
+            // Инициализация при загрузке
+            calculateTotal();
+        });
+    </script>
+</body>
+</html>

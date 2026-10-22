@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Спасибо — Автошкола "Правый ряд"</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .thanks-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+    .thanks-icon {
+      font-size: 4rem;
+      color: #10b981;
+      margin-bottom: 1rem;
+    }
+    .request-id {
+      background-color: var(--bg-light);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      display: inline-block;
+      margin: 1.5rem 0;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: var(--primary);
+      border: 1px solid var(--border);
+    }
+    .checklist {
+      text-align: left;
+      background-color: var(--text-light);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+    .checklist h3 {
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+    .checklist ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .checklist li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .checklist li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+    .messenger-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>  <!-- Шапка -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">Правый ряд</a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="/">Главная</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/prices">Цены</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  <main class="thanks-container">
+    <div class="thanks-icon">&#10004;</div>
+    <h1>Спасибо! Ваша заявка принята</h1>
+    <p>Мы свяжемся с вами в ближайшее время для подтверждения записи.</p>
+Копировать
+<div class="request-id">
+  Номер вашей заявки: <span id="request-id">—</span>
+</div>
+
+<div class="checklist">
+  <h3>На консультацию с собой возьмите:</h3>
+  <ul>
+    <li>Паспорт гражданина РФ</li>
+    <li>Медицинскую справку (форма 003-В/у)</li>
+    <li>Две фотографии 3x4 (матовые)</li>
+  </ul>
+</div>
+
+<div class="messenger-buttons">
+  <a href="https://t.me/pravy_ryad_bot" target="_blank" class="btn btn-outline" data-event="messenger_click" data-messenger="telegram">Написать в Telegram</a>
+  <a href="https://wa.me/74951234567" target="_blank" class="btn btn-outline" data-event="messenger_click" data-messenger="whatsapp">Написать в WhatsApp</a>
+</div>
+
+  </main>  <!-- Подвал -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-nav">
+        <a href="/about">О нас</a>
+        <a href="/prices">Цены</a>
+        <a href="/contacts">Контакты</a>
+        <a href="/privacy">Политика конфиденциальности</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
+        </a>
+        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
+        </a>
+        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
+    </div>
+  </footer>  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const requestId = urlParams.get('request_id');
+      const idElement = document.getElementById('request-id');
+
+      if (requestId && idElement) {
+        idElement.textContent = requestId;
+      } else {
+        idElement.textContent = 'REQ-XXXX-XXXX';
+      }
+    });
+  </script>
+</body>
+</html>

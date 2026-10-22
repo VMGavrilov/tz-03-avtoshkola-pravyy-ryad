@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Филиалы — Автошкола "Правый ряд"</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .branches-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+    .branch-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .branch-tab {
+      padding: 1rem 1.5rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      background-color: var(--bg-light);
+      border: 1px solid var(--border);
+      border-bottom: none;
+      cursor: pointer;
+      transition: var(--transition);
+      flex: 1;
+      text-align: center;
+    }
+    .branch-tab:first-child {
+      border-radius: var(--radius) 0 0 0;
+    }
+    .branch-tab:last-child {
+      border-radius: 0 var(--radius) 0 0;
+    }
+    .branch-tab.active {
+      background-color: var(--primary);
+      color: var(--text-light);
+      border-color: var(--primary);
+    }
+    .branch-content {
+      background-color: var(--text-light);
+      border: 1px solid var(--border);
+      border-radius: 0 var(--radius) var(--radius) var(--radius);
+      padding: 2rem;
+      display: none;
+    }
+    .branch-content.active {
+      display: block;
+    }
+    .branch-address {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .branch-schedule {
+      background-color: var(--bg-light);
+      padding: 1rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .branch-schedule h4 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .map-btn {
+      width: 100%;
+      display: block;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>  <!-- Шапка -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">Правый ряд</a>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="/">Главная</a></li>
+          <li><a href="/about">О нас</a></li>
+          <li><a href="/prices">Цены</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>  <main class="branches-container">
+    <h1>Наши филиалы</h1>
+Копировать
+<div class="branch-tabs">
+  <button class="branch-tab active" data-branch="central">Центральный</button>
+  <button class="branch-tab" data-branch="north">Северный</button>
+</div>
+
+<!-- Центральный -->
+<div id="central-content" class="branch-content active">
+  <div class="branch-address">г. Москва, ул. Автомобилистов, д. 22</div>
+  <div class="branch-schedule">
+    <h4>Расписание теории</h4>
+    <p>Понедельник, Среда, Пятница</p>
+    <p>18:30 – 21:00</p>
+  </div>
+  <a href="https://yandex.ru/maps/?text=ул.+Автомобилистов+22+Москва" target="_blank" class="btn btn-primary map-btn">Открыть на карте</a>
+</div>
+
+<!-- Северный -->
+<div id="north-content" class="branch-content">
+  <div class="branch-address">г. Москва, ул. Полярная, д. 5</div>
+  <div class="branch-schedule">
+    <h4>Расписание теории</h4>
+    <p>Понедельник, Среда, Пятница</p>
+    <p>18:30 – 21:00</p>
+  </div>
+  <a href="https://yandex.ru/maps/?text=ул.+Полярная+5+Москва" target="_blank" class="btn btn-primary map-btn">Открыть на карте</a>
+</div>
+
+  </main>  <!-- Подвал -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-nav">
+        <a href="/about">О нас</a>
+        <a href="/prices">Цены</a>
+        <a href="/contacts">Контакты</a>
+        <a href="/privacy">Политика конфиденциальности</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
+        </a>
+        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
+        </a>
+        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
+          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
+    </div>
+  </footer>  <script>
+    const tabs = document.querySelectorAll('.branch-tab');
+    const contents = document.querySelectorAll('.branch-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Снимаем активный класс со всех
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+
+        // Устанавливаем активный класс
+        tab.classList.add('active');
+        const branchId = tab.dataset.branch;
+        document.getElementById(`${branchId}-content`).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
