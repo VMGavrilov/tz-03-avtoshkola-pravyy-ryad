@@ -229,7 +229,7 @@
                     // Отправляем как URLSearchParams (form-data)
                     const searchParams = new URLSearchParams(formData);
                     
-                    const response = await fetch('YOUR_APPS_SCRIPT_URL', {
+                    const response = await fetch('https://script.google.com/macros/s/AKfycbyTuQTpgsg44n-exKzAmhtu9BzvebUUSm-yRRcsMUiA2Sy6278Mt2b3Gsi68gmmkKJAfQ/exec', {
                         method: 'POST',
                         body: searchParams
                     });
