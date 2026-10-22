@@ -185,6 +185,7 @@
                 const formData = new FormData(form);
                 const data = Object.fromEntries(formData.entries());
 
+                // Клиентская валидация
                 let hasError = false;
                 if (data.name.length < 2 || data.name.length > 60) {
                     setError('name', 'Имя должно содержать от 2 до 60 символов');
@@ -215,11 +216,15 @@
                 submitBtn.textContent = 'Отправка...';
 
                 try {
+                    // Преобразуем в FormData для отправки как application/x-www-form-urlencoded
                     const searchParams = new URLSearchParams(formData);
                     
-                    // ВСТАВЬТЕ СЮДА ВАШ URL ИЗ APPS SCRIPT
-                    const response = await fetch('ВАШ_URL_ИЗ_APPS_SCRIPT', {
+                    // ВСТАВЬТЕ СЮДА ВАШ URL ИЗ APPS SCRIPT (который заканчивается на /exec)
+                    const response = await fetch('https://script.google.com/macros/s/AKfycbyTuQTpgsg44n-exKzAmhtu9BzvebUUSm-yRRcsMUiA2Sy6278Mt2b3Gsi68gmmkKJAfQ/exec', {
                         method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
                         body: searchParams
                     });
 
@@ -235,10 +240,16 @@
                         window.location.href = `thanks.html?request_id=${encodeURIComponent(data.request_id)}`;
                     } else {
                         alert(result.error || 'Произошла ошибка при отправке.');
+                        if (typeof gtag === 'function') {
+                            gtag('event', 'form_error', { field_name: 'server', error_type: 'server' });
+                        }
                     }
                 } catch (error) {
                     console.error(error);
                     alert('Ошибка сети. Проверьте подключение.');
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'form_error', { field_name: 'network', error_type: 'server' });
+                    }
                 } finally {
                     submitBtn.disabled = false;
                     submitBtn.textContent = originalText;
