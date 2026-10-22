@@ -1,370 +1,205 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Тренажёр ПДД — Автошкола "Правый ряд"</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .pdd-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-    }
-    .pdd-welcome, .pdd-question, .pdd-explanation, .pdd-result {
-      background-color: var(--text-light);
-      border-radius: var(--radius);
-      padding: 2rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      text-align: center;
-      display: none;
-    }
-    .pdd-welcome.active, .pdd-question.active, .pdd-explanation.active, .pdd-result.active {
-      display: block;
-    }
-    .pdd-question-text {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1.5rem;
-    }
-    .pdd-answers {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .pdd-answer-btn {
-      text-align: left;
-      padding: 1rem 1.5rem;
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      background-color: var(--bg-light);
-      font-size: 1rem;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-    .pdd-answer-btn:hover {
-      border-color: var(--primary);
-      background-color: #f3f4f6;
-    }
-    .pdd-answer-btn.correct {
-      border-color: #10b981;
-      background-color: #ecfdf5;
-      color: #047857;
-    }
-    .pdd-answer-btn.wrong {
-      border-color: #ef4444;
-      background-color: #fef2f2;
-      color: #991b1b;
-    }
-    .pdd-explanation {
-      text-align: left;
-      background-color: #f0f9ff;
-      border-left: 4px solid var(--primary);
-    }
-    .pdd-explanation h4 {
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
-    .pdd-nav {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 1.5rem;
-    }
-    .progress-bar {
-      height: 6px;
-      background-color: var(--border);
-      border-radius: 3px;
-      margin-bottom: 1.5rem;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      width: 0;
-      background-color: var(--primary);
-      transition: width 0.3s ease;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажёр ПДД — Автошкола «Правый ряд»</title>
+    <meta name="description" content="Проверьте знания ПДД перед экзаменом в ГИБДД. 10 вопросов с разбором ответов.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5Z8GCK9BQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T5Z8GCK9BQ');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/utm.js" defer></script>
+    <script src="js/analytics.js" defer></script>
+    
+    <style>
+        /* Дополнительные стили только для теста, чтобы не засорять основной CSS */
+        .screen { display: none; }
+        .screen.active { display: block; animation: fadeIn 0.5s; }
+        .option-btn {
+            display: block; width: 100%; text-align: left; padding: 15px;
+            margin-bottom: 10px; background: #fff; border: 2px solid #e2e8f0;
+            border-radius: 8px; cursor: pointer; font-size: 16px; transition: all 0.2s;
+        }
+        .option-btn:hover:not(.disabled) { border-color: var(--primary); background: #f0f7ff; }
+        .option-btn.disabled { cursor: not-allowed; opacity: 0.7; }
+        .option-btn.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; font-weight: bold; }
+        .option-btn.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
+        .hidden { display: none !important; }
+        .explanation-box { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px; margin-top: 20px; border-radius: 4px; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
 </head>
-<body>  <!-- Шапка -->
-  <header>
-    <div class="header-inner">
-      <a href="/" class="logo">Правый ряд</a>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="/">Главная</a></li>
-          <li><a href="/about">О нас</a></li>
-          <li><a href="/prices">Цены</a></li>
-          <li><a href="/contacts">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>  <main class="pdd-container">
-    <!-- Экран приветствия -->
-    <section id="pdd-welcome" class="pdd-welcome active">
-      <h2>Тренажёр ПДД</h2>
-      <p>Проверьте свои знания перед экзаменом. В тесте 10 вопросов из актуальных билетов ГИБДД.</p>
-      <button class="btn btn-primary" id="start-test">Начать тест</button>
-    </section>
-Копировать
-<!-- Вопрос -->
-<section id="pdd-question" class="pdd-question">
-  <div class="progress-bar">
-    <div class="progress-fill" id="progress-fill"></div>
-  </div>
-  <div class="pdd-question-text" id="question-text"></div>
-  <div class="pdd-answers" id="answers-container"></div>
-</section>
+<body>
 
-<!-- Пояснение -->
-<section id="pdd-explanation" class="pdd-explanation">
-  <h4 id="explanation-title"></h4>
-  <p id="explanation-text"></p>
-  <div class="pdd-nav">
-    <button class="btn btn-outline" id="prev-btn" style="display: none;">Назад</button>
-    <button class="btn btn-primary" id="next-btn">Далее</button>
-  </div>
-</section>
+    <!-- Шапка -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">Правый ряд</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="prices.html">Цены</a></li>
+                    <li><a href="instructors.html">Инструкторы</a></li>
+                    <li><a href="pdd-test.html" class="active">Тренажёр</a></li>
+                    <li><a href="branches.html">Филиалы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<!-- Результат -->
-<section id="pdd-result" class="pdd-result">
-  <h2>Тест завершен!</h2>
-  <p id="result-text"></p>
-  <a href="/contacts" class="btn btn-primary" data-event="cta_click" data-button-name="pdd_result_btn">Записаться на обучение</a>
-</section>
+    <main class="container" style="min-height: 60vh;">
+        
+        <!-- Экран приветствия -->
+        <section id="welcome-screen" class="screen active" style="text-align: center; padding: 50px 0;">
+            <h1>Тренажёр ПДД</h1>
+            <p style="font-size: 18px; color: var(--gray); margin-bottom: 30px;">10 вопросов с разбором ответов. Проверьте себя перед экзаменом!</p>
+            <button id="start-test-btn" class="btn btn-primary" data-event="pdd_test_start" style="font-size: 18px; padding: 15px 40px;">Начать тест</button>
+        </section>
 
-  </main>  <!-- Подвал -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-nav">
-        <a href="/about">О нас</a>
-        <a href="/prices">Цены</a>
-        <a href="/contacts">Контакты</a>
-        <a href="/privacy">Политика конфиденциальности</a>
-      </div>
-      <div class="social-icons">
-        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
-        </a>
-        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
-        </a>
-        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
-    </div>
-  </footer>  <script>
-    const questions = [
-      {
-        question: 'Разрешается ли водителю пользоваться телефоном во время движения?',
-        options: [
-          { text: 'Разрешается', correct: false },
-          { text: 'Разрешается только при использовании устройства громкой связи', correct: true },
-          { text: 'Запрещается', correct: false }
-        ],
-        explanation: 'Пункт 2.7 ПДД РФ запрещает пользоваться телефоном, не оборудованным техническим устройством, позволяющим вести переговоры без использования рук.'
-      },
-      {
-        question: 'Что означает мигающий желтый сигнал светофора?',
-        options: [
-          { text: 'Движение запрещено', correct: false },
-          { text: 'Разрешается движение с особой осторожностью', correct: true },
-          { text: 'Светофор неисправен', correct: false }
-        ],
-        explanation: 'Мигающий желтый сигнал информирует о нерегулируемом перекрестке или переходе и предупреждает об опасности.'
-      },
-      {
-        question: 'Какова максимально разрешенная скорость в населенных пунктах, если нет иных знаков?',
-        options: [
-          { text: '50 км/ч', correct: false },
-          { text: '60 км/ч', correct: true },
-          { text: '80 км/ч', correct: false }
-        ],
-        explanation: 'Согласно пункту 10.2 ПДД, в населенных пунктах разрешается движение со скоростью не более 60 км/ч.'
-      },
-      {
-        question: 'Какой штраф предусмотрен за управление ТС в состоянии опьянения?',
-        options: [
-          { text: 'Штраф 30 000 рублей', correct: false },
-          { text: 'Лишение прав на 1,5-2 года и штраф 30 000 рублей', correct: true },
-          { text: 'Только лишение прав', correct: false }
-        ],
-        explanation: 'Статья 12.8 КоАП РФ предусматривает административный штраф в размере тридцати тысяч рублей с лишением права управления на срок от полутора до двух лет.'
-      },
-      {
-        question: 'Обязан ли водитель уступить дорогу пешеходам на нерегулируемом переходе?',
-        options: [
-          { text: 'Да, обязан', correct: true },
-          { text: 'Нет, если пешеход еще не вышел на проезжую часть', correct: false },
-          { text: 'Только если пешеход пожилой', correct: false }
-        ],
-        explanation: 'Пункт 14.1 ПДД обязывает водителя уступить дорогу пешеходам, переходящим дорогу или вступившим на проезжую часть.'
-      },
-      {
-        question: 'Разрешена ли учебная езда на автомагистралях?',
-        options: [
-          { text: 'Разрешена', correct: false },
-          { text: 'Запрещена', correct: true },
-          { text: 'Разрешена только в светлое время суток', correct: false }
-        ],
-        explanation: 'Пункт 16.1 ПДД запрещает учебную езду на автомагистралях.'
-      },
-      {
-        question: 'Что означает знак "Главная дорога"?',
-        options: [
-          { text: 'Запрещено движение со второстепенной', correct: false },
-          { text: 'На данной дороге водитель имеет преимущество', correct: true },
-          { text: 'Впереди перекресток', correct: false }
-        ],
-        explanation: 'Знак 2.1 предоставляет водителю приоритет (преимущество) перед нерегулируемыми перекрестками.'
-      },
-      {
-        question: 'В каких случаях можно пересекать сплошную линию разметки 1.1?',
-        options: [
-          { text: 'В любое время при обгоне', correct: false },
-          { text: 'Только для объезда неподвижного препятствия', correct: false },
-          { text: 'Пересекать запрещается', correct: true }
-        ],
-        explanation: 'Горизонтальная разметка 1.1 разделяет транспортные потоки и пересекать её запрещено (за исключением крайней необходимости при объезде, если это безопасно).'
-      },
-      {
-        question: 'Какое расстояние должно быть обеспечено для полной остановки при скорости 60 км/ч на сухом асфальте?',
-        options: 
-        [
-          { text: 'Около 20 метров', correct: false },
-          { text: 'Около 35-40 метров', correct: true },
-          { text: 'Около 15 метров', correct: false }
-        ],
-        explanation: 'Среднее время реакции и тормозной путь на сухом асфальте при 60 км/ч в сумме составляют примерно 35-40 метров.'
-      },
-      {
-        question: 'Разрешено ли движение задним ходом на автомагистрали?',
-        options: [
-          { text: 'Разрешено для разворота', correct: false },
-          { text: 'Запрещено', correct: true },
-          { text: 'Разрешено, если нет машин', correct: false }
-        ],
-        explanation: 'Пункт 16.1 ПДД категорически запрещает движение задним ходом на автомагистралях.'
-      }
-    ];
+        <!-- Экран вопроса -->
+        <section id="question-screen" class="screen">
+            <div style="margin-bottom: 20px; color: var(--gray);">Вопрос <span id="current-q">1</span> из 10</div>
+            <h2 id="question-text" style="margin-bottom: 20px;"></h2>
+            <div id="options-container"></div>
+            <div id="explanation-box" class="explanation-box hidden"></div>
+            <button id="next-btn" class="btn btn-primary hidden" style="margin-top: 20px;">Следующий вопрос</button>
+        </section>
 
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let userAnswers = [];
+        <!-- Экран результата -->
+        <section id="result-screen" class="screen" style="text-align: center; padding: 50px 0;">
+            <h2 id="result-title" style="margin-bottom: 10px;"></h2>
+            <p style="font-size: 18px; margin-bottom: 30px;">Вы ответили правильно на <strong id="score-display"></strong> из 10</p>
+            <a href="contacts.html" class="btn btn-primary" data-event="cta_click" data-button-name="pdd_result">Записаться на обучение</a>
+        </section>
 
-    const welcomeEl = document.getElementById('pdd-welcome');
-    const questionEl = document.getElementById('pdd-question');
-    const explanationEl = document.getElementById('pdd-explanation');
-    const resultEl = document.getElementById('pdd-result');
+    </main>
 
-    const questionTextEl = document.getElementById('question-text');
-    const answersContainer = document.getElementById('answers-container');
-    const explanationTitleEl = document.getElementById('explanation-title');
-    const explanationTextEl = document.getElementById('explanation-text');
-    const progressFill = document.getElementById('progress-fill');
+    <!-- Подвал -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-nav">
+                <a href="index.html">Главная</a>
+                <a href="prices.html">Цены</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="privacy.html">Политика конфиденциальности</a>
+            </div>
+            <div class="social-icons">
+                <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer">VK</a>
+                <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer">TG</a>
+                <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer">WA</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Автошкола «Правый ряд». Все права защищены.
+        </div>
+    </footer>
 
-    const startBtn = document.getElementById('start-test');
-    const nextBtn = document.getElementById('next-btn');
-    const prevBtn = document.getElementById('prev-btn');
+    <!-- Логика теста -->
+    <script>
+        const questions = [
+            { q: "Что означает мигающий желтый сигнал светофора?", options: ["Движение запрещено", "Движение разрешено с особой осторожностью", "Перекресток нерегулируемый"], correct: 1, exp: "Мигающий желтый разрешает движение, но информирует об опасности." },
+            { q: "Разрешается ли превышать скорость, указанную на знаке, если вы опаздываете?", options: ["Разрешается", "Запрещается", "Разрешается на 10 км/ч"], correct: 1, exp: "Требования знаков обязательны. Превышение запрещено." },
+            { q: "Как поступить, если на полосе препятствие?", options: ["Объехать по встречной", "Убедиться в безопасности и объехать", "Остановиться и ждать"], correct: 1, exp: "Объезд разрешен, если он безопасен." },
+            { q: "Что такое «Недостаточная видимость»?", options: ["Менее 300 метров", "Менее 100 метров", "Темное время суток"], correct: 0, exp: "Это видимость дороги менее 300 метров (туман, дождь, снег)." },
+            { q: "Разрешено ли движение задним ходом на автомагистрали?", options: ["Для парковки", "Запрещено", "Если скорость до 20 км/ч"], correct: 1, exp: "Движение задним ходом на автомагистрали запрещено." },
+            { q: "Максимальная скорость легковых на автомагистрали?", options: ["110 км/ч", "130 км/ч", "90 км/ч"], correct: 0, exp: "По ПДД РФ на автомагистралях до 110 км/ч." },
+            { q: "Где разрешено учебное вождение?", options: ["Везде", "Только на автодроме", "На дорогах с дублирующими педалями и знаком «У»"], correct: 2, exp: "Только на спец. оборудованных авто." },
+            { q: "При приближении спецтранспорта с сиреной вы обязаны:", options: ["Уступить дорогу", "Ускориться", "Ехать как обычно"], correct: 0, exp: "Нужно снизить скорость и уступить." },
+            { q: "Что значит желтая зигзагообразная линия?", options: ["Остановка маршруток/такси", "Место для парковки", "Запрет остановки"], correct: 0, exp: "Она обозначает остановки маршрутных ТС." },
+            { q: "Что включать вне населенного пункта при плохой видимости?", options: ["Ближний свет", "Противотуманки", "Дальний или ближний свет"], correct: 2, exp: "Обязательно включать дальний или ближний свет." }
+        ];
 
-    function showWelcome() {
-      welcomeEl.classList.add('active');
-      questionEl.classList.remove('active');
-      explanationEl.classList.remove('active');
-      resultEl.classList.remove('active');
-    }
+        let currentIndex = 0;
+        let score = 0;
 
-    function showQuestion(index) {
-      currentQuestionIndex = index;
-      welcomeEl.classList.remove('active');
-      explanationEl.classList.remove('active');
-      resultEl.classList.remove('active');
-      questionEl.classList.add('active');
-
-      const q = questions[index];
-      questionTextEl.textContent = `${index + 1}. ${q.question}`;
-      answersContainer.innerHTML = '';
-
-      q.options.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'pdd-answer-btn';
-        btn.textContent = opt.text;
-        btn.dataset.correct = opt.correct;
-        btn.addEventListener('click', () => handleAnswer(opt.correct, q.explanation));
-        answersContainer.appendChild(btn);
-      });
-
-      updateProgress();
-    }
-
-    function handleAnswer(isCorrect, explanation) {
-      // Блокируем кнопки
-      const buttons = answersContainer.querySelectorAll('button');
-      buttons.forEach(btn => btn.disabled = true);
-
-      if (isCorrect) {
-        score++;
-        buttons.forEach(btn => {
-          if (btn.dataset.correct === 'true') {
-            btn.classList.add('correct');
-          }
+        const welcomeScreen = document.getElementById('welcome-screen');
+        const questionScreen = document.getElementById('question-screen');
+        const resultScreen = document.getElementById('result-screen');
+        
+        document.getElementById('start-test-btn').addEventListener('click', () => {
+            // Отправляем событие в GA4 (если analytics.js не сделал это сам)
+            if (typeof gtag === 'function') gtag('event', 'pdd_test_start');
+            welcomeScreen.classList.remove('active');
+            questionScreen.classList.add('active');
+            loadQuestion();
         });
-      } else {
-        buttons.forEach(btn => {
-          if (btn.dataset.correct === 'true') {
-            btn.classList.add('correct');
-          } else {
-            btn.classList.add('wrong');
-          }
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentIndex++;
+            if (currentIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
         });
-      }
 
-      explanationTitleEl.textContent = isCorrect ? 'Верно!' : 'Ошибка';
-      explanationTextEl.textContent = explanation;
+        function loadQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById('current-q').textContent = currentIndex + 1;
+            document.getElementById('question-text').textContent = q.q;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            const expBox = document.getElementById('explanation-box');
+            expBox.classList.add('hidden');
+            document.getElementById('next-btn').classList.add('hidden');
 
-      userAnswers[currentQuestionIndex] = isCorrect;
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = opt;
+                btn.onclick = () => checkAnswer(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
 
-      questionEl.classList.remove('active');
-      explanationEl.classList.add('active');
-      nextBtn.style.display = 'inline-block';
-      prevBtn.style.display = (currentQuestionIndex > 0) ? 'inline-block' : 'none';
-    }
+        function checkAnswer(selectedIdx, btnElement) {
+            const q = questions[currentIndex];
+            const allBtns = document.querySelectorAll('.option-btn');
+            
+            allBtns.forEach(b => b.classList.add('disabled'));
+            
+            if (selectedIdx === q.correct) {
+                score++;
+                btnElement.classList.add('correct');
+            } else {
+                btnElement.classList.add('wrong');
+                allBtns[q.correct].classList.add('correct');
+            }
 
-    function showResult() {
-      welcomeEl.classList.remove('active');
-      questionEl.classList.remove('active');
-      explanationEl.classList.remove('active');
-      resultEl.classList.add('active');
+            const expBox = document.getElementById('explanation-box');
+            expBox.innerHTML = `<strong>Пояснение:</strong> ${q.exp}`;
+            expBox.classList.remove('hidden');
+            
+            document.getElementById('next-btn').classList.remove('hidden');
+        }
 
-      const percentage = Math.round((score / questions.length) * 100);
-      resultEl.querySelector('h2').textContent = `Тест завершен!`;
-      resultEl.querySelector('#result-text').textContent = `Вы ответили правильно на ${score} из ${questions.length} вопросов (${percentage}%).`;
-    }
+        function showResult() {
+            questionScreen.classList.remove('active');
+            resultScreen.classList.add('active');
+            document.getElementById('score-display').textContent = score;
+            
+            if (score >= 9) {
+                document.getElementById('result-title').textContent = "Отлично! Вы готовы к экзамену.";
+            } else {
+                document.getElementById('result-title').textContent = "Стоит повторить материал.";
+            }
 
-    function updateProgress() {
-      const percent = ((currentQuestionIndex + 1) / questions.length) * 100;
-      progressFill.style.width = percent + '%';
-    }
-
-    startBtn.addEventListener('click', () => showQuestion(0));
-
-    nextBtn.addEventListener('click', () => {
-      if (currentQuestionIndex < questions.length - 1) {
-        showQuestion(currentQuestionIndex + 1);
-      } else {
-        showResult();
-      }
-    });
-
-    prevBtn.addEventListener('click', () => {
-      if (currentQuestionIndex > 0) {
-        showQuestion(currentQuestionIndex - 1);
-      }
-    });
-  </script>
+            // Отправка события завершения в GA4
+            if (typeof gtag === 'function') {
+                gtag('event', 'pdd_test_complete', { score: score });
+            }
+        }
+    </script>
 </body>
 </html>
