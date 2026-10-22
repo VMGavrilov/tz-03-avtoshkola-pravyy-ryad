@@ -1,89 +1,48 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Страница не найдена — 404</title>
-  <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .error-container {
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    .error-code {
-      font-size: 8rem;
-      font-weight: 800;
-      color: var(--primary);
-      margin: 0;
-      line-height: 1;
-    }
-    .error-title {
-      font-size: 2rem;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--dark);
-      margin: 1rem 0;
-    }
-    .error-text {
-      color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 400px;
-    }
-    .error-image {
-      max-width: 300px;
-      width: 100%;
-      height: auto;
-      margin-bottom: 2rem;
-      opacity: 0.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена — Автошкола «Правый ряд»</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T5Z8GCK9BQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T5Z8GCK9BQ');
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>  <!-- Шапка -->
-  <header>
-    <div class="header-inner">
-      <a href="/" class="logo">Правый ряд</a>
-      <nav>
-        <ul class="nav-list">
-          <li><a href="/">Главная</a></li>
-          <li><a href="/about">О нас</a></li>
-          <li><a href="/prices">Цены</a></li>
-          <li><a href="/contacts">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>  <main class="error-container">
-    <img src="../images/404-illustration.svg" alt="Страница не найдена" class="error-image">
-    <h1 class="error-code">404</h1>
-    <h2 class="error-title">Страница не найдена</h2>
-    <p class="error-text">Похоже, мы не смогли найти страницу, которую вы ищете. Возможно, она была перемещена или удалена.</p>
-    <a href="/" class="btn btn-primary">Вернуться на главную</a>
-  </main>  <!-- Подвал -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-nav">
-        <a href="/about">О нас</a>
-        <a href="/prices">Цены</a>
-        <a href="/contacts">Контакты</a>
-        <a href="/privacy">Политика конфиденциальности</a>
-      </div>
-      <div class="social-icons">
-        <a href="https://vk.com/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="ВКонтакте">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка VK --></svg>
-        </a>
-        <a href="https://t.me/pravy_ryad" target="_blank" data-event="social_click" data-page_section="footer" aria-label="Telegram">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка Telegram --></svg>
-        </a>
-        <a href="https://wa.me/79991234567" target="_blank" data-event="social_click" data-page_section="footer" aria-label="WhatsApp">
-          <svg width="24" height="24" fill="currentColor"><!-- Иконка WhatsApp --></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Автошкола «Правый ряд». Все права защищены.</p>
-    </div>
-  </footer></body>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="logo">Правый ряд</a>
+            <nav>
+                <ul class="nav-list">
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="prices.html">Цены</a></li>
+                    <li><a href="instructors.html">Инструкторы</a></li>
+                    <li><a href="pdd-test.html">Тренажёр</a></li>
+                    <li><a href="branches.html">Филиалы</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px;">
+        <h1 style="font-size: 120px; line-height: 1; margin-bottom: 0; color: var(--primary);">404</h1>
+        <h2 style="margin-bottom: 20px;">Упс! Кажется, вы свернули не туда.</h2>
+        <p style="font-size: 18px; color: var(--gray); margin-bottom: 30px;">Этой страницы не существует, либо она была удалена.</p>
+        <a href="index.html" class="btn btn-primary">Вернуться на главную</a>
+    </main>
+
+    <footer>
+        <div class="footer-bottom" style="margin: 0; padding: 20px;">
+            &copy; 2026 Автошкола «Правый ряд». Все права защищены.
+        </div>
+    </footer>
+</body>
 </html>
