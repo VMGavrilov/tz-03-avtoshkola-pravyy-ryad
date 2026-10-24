@@ -9,7 +9,7 @@
 | Объект | Ссылка |
 | :--- | :--- |
 | **Сайт на Vercel** | [https://tz-03-avtoshkola-pravyy-ryad.vercel.app](https://tz-03-avtoshkola-pravyy-ryad.vercel.app) |
-| **Google Таблица (Заявки)** | [https://docs.google.com/spreadsheets/d/1ql5uaftcWL_wvrURTjTZHo77rgIMFba6A0fHHbxPhb8/edit?gid=0#gid=0](https://docs.google.com/spreadsheets/...) |
+| **Google Таблица (Заявки)** | [https://docs.google.com/spreadsheets/d/1ql5uaftcWL_wvrURTjTZHo77rgIMFba6A0fHHbxPhb8/edit?usp=sharing](https://docs.google.com/spreadsheets/...) |
 | **Дашборд DataLens** | [https://datalens.yandex/7gql23jgud78q?_share_link=public](https://datalens.ru/...) |
 | **Идентификатор GA4** | `G-T5Z8GCK9BQ` |
 
